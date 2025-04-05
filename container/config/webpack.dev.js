@@ -5,6 +5,9 @@ const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
+const domain =
+	process.env.MARKETINGAPP_PRODUCTION_DOMAIN || "http://localhost:8081";
+
 const devConfig = {
 	mode: "development",
 	devServer: {
@@ -17,7 +20,7 @@ const devConfig = {
 		new ModuleFederationPlugin({
 			name: "container",
 			remotes: {
-				marketing: `marketing@${process.env.MARKETINGAPP_PRODUCTION_DOMAIN}/remoteEntry.js`,
+				marketing: `marketing@${domain}/remoteEntry.js`,
 			},
 			shared: packageJson.dependencies,
 		}),
