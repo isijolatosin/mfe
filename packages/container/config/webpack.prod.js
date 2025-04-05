@@ -5,7 +5,8 @@ const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
-const mrktDomain = process.env.MARKETINGAPP_PRODUCTION_DOMAIN;
+const mrktDomain =
+	process.env.MARKETINGAPP_PRODUCTION_DOMAIN || "http://localhost:8081";
 
 const prodConfig = {
 	mode: "production",
